@@ -1,8 +1,38 @@
-const { getRecipe, getRecipeById, deleteById, postRecipe, putRecipe } = require("../model/RecipeModel");
+const { getRecipe, getRecipeById, deleteById, postRecipe, putRecipe, getRecipeAll, getRecipeCount } = require("../model/RecipeModel");
 
 const RecipeController = {
+    getDataDetail: async (req, res, next) => {
+        const { search, searchBy, sort, limit } = req.query;
+
+        let page = req.query.page || 1;
+        let limiter = limit || 5;
+
+        data = {
+            search: search || "",
+            searchBy: searchBy || "title",
+            sort: sort || "asc",
+            offset: (page - 1) * limiter,
+            limit: limit || 5,
+        };
+        let dataRecipe = await getRecipe(data);
+        let dataRecipeCount = await getRecipeCount(data);
+
+        let pagination = {
+            totalPage: Math.ceil(dataRecipeCount.rows[0].count / limiter),
+            totalData: parseInt(dataRecipeCount.rows[0].count),
+            pageNow: parseInt(page),
+        };
+
+        console.log("dataRecipe");
+        console.log(dataRecipe);
+        console.log("total data");
+        console.log(dataRecipeCount.rows[0].count);
+        if (dataRecipe) {
+            res.status(200).json({ status: 200, message: "get data recipe success", data: dataRecipe.rows, pagination });
+        }
+    },
     getData: async (req, res, next) => {
-        let dataRecipe = await getRecipe();
+        let dataRecipe = await getRecipeAll();
         console.log("dataRecipe");
         console.log(dataRecipe);
         if (dataRecipe) {
@@ -46,17 +76,17 @@ const RecipeController = {
         }
     },
     postData: async (req, res, next) => {
-        const { title, ingredients, category } = req.body;
+        const { title, ingredients, category_id } = req.body;
         console.log("post data ");
-        console.log(title, ingredients, category);
+        console.log(title, ingredients, category_id);
 
-        if (!title || !ingredients || !category) {
-            return res.status(404).json({ message: "input title ingredients category required" });
+        if (!title || !ingredients || !category_id) {
+            return res.status(404).json({ message: "input title ingredients category_id required" });
         }
         let data = {
             title: title,
             ingredients: ingredients,
-            category: category,
+            category_id: parseInt(category_id),
         };
 
         console.log("data");
@@ -68,7 +98,7 @@ const RecipeController = {
     },
     putData: async (req, res, next) => {
         const { id } = req.params;
-        const { title, ingredients, category } = req.body;
+        const { title, ingredients, category_id } = req.body;
 
         if (!id || id <= 0 || isNaN(id)) {
             return res.status(404).json({ message: "id wrong" });
@@ -82,11 +112,10 @@ const RecipeController = {
         let data = {
             title: title || dataRecipeId.rows[0].title,
             ingredients: ingredients || dataRecipeId.rows[0].ingredients,
-            category: category || dataRecipeId.rows[0].category,
-            id,
+            category_id: parseInt(category_id) || dataRecipeId.rows[0].category_id,
         };
 
-        let result = putRecipe(data);
+        let result = putRecipe(data, id);
         console.log(result);
 
         delete data.id;

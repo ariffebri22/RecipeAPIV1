@@ -2,10 +2,17 @@ const express = require("express");
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const cors = require("cors");
 const Router = require("./src/router");
 
 const port = 4000;
 const app = express();
+
+const corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

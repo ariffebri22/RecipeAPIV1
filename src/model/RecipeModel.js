@@ -1,25 +1,55 @@
 const Pool = require("../config/db");
 
-const getRecipe = async () => {
+const getRecipeAll = async () => {
     console.log("model getRecipe");
     return new Promise((resolve, reject) =>
-        Pool.query(`SELECT * FROM recipe`, (err, result) => {
+        Pool.query(`SELECT recipe.id, recipe.title, recipe.ingredients, recipe.photo, category.name AS category FROM recipe JOIN category ON recipe.category_id = category.id ORDER BY recipe.id`, (err, result) => {
             if (!err) {
                 resolve(result);
             } else {
                 reject(err);
-                c;
+            }
+        })
+    );
+};
+
+const getRecipe = async (data) => {
+    const { search, searchBy, sort, offset, limit } = data;
+    console.log("model getRecipe", search, searchBy, sort, offset, limit);
+    return new Promise((resolve, reject) =>
+        Pool.query(
+            `SELECT recipe.id, recipe.title, recipe.ingredients, recipe.photo, category.name AS category FROM recipe JOIN category ON recipe.category_id = category.id WHERE ${searchBy} ILIKE '%${search}%' ORDER BY recipe.id ${sort} OFFSET ${offset} LIMIT ${limit} `,
+            (err, result) => {
+                if (!err) {
+                    resolve(result);
+                } else {
+                    reject(err);
+                }
+            }
+        )
+    );
+};
+
+const getRecipeCount = async (data) => {
+    const { search, searchBy, sort, offset, limit } = data;
+    console.log("model getRecipe", search, searchBy, sort, offset, limit);
+    return new Promise((resolve, reject) =>
+        Pool.query(`SELECT COUNT(*) FROM recipe JOIN category ON recipe.category_id = category.id WHERE ${searchBy} ILIKE '%${search}%'`, (err, result) => {
+            if (!err) {
+                resolve(result);
+            } else {
+                reject(err);
             }
         })
     );
 };
 
 const postRecipe = async (data) => {
-    const { title, ingredients, category } = data;
+    const { title, ingredients, category_id } = data;
     console.log(data);
     console.log("model postRecipe");
     return new Promise((resolve, reject) =>
-        Pool.query(`INSERT INTO recipe(title,ingredients,category,photo) VALUES('${title}','${ingredients}','${category}','https://placehold.co/600x400')`, (err, result) => {
+        Pool.query(`INSERT INTO recipe(title,ingredients,category_id,photo) VALUES('${title}','${ingredients}',${category_id},'https://placehold.co/600x400')`, (err, result) => {
             if (!err) {
                 resolve(result);
             } else {
@@ -29,11 +59,11 @@ const postRecipe = async (data) => {
     );
 };
 
-const putRecipe = async (data) => {
-    const { id, title, ingredients, category } = data;
+const putRecipe = async (data, id) => {
+    const { title, ingredients, category_id } = data;
     console.log("model postRecipe");
     return new Promise((resolve, reject) =>
-        Pool.query(`UPDATE recipe SET title='${title}', ingredients='${ingredients}', category = '${category}' WHERE id=${id}`, (err, result) => {
+        Pool.query(`UPDATE recipe SET title='${title}', ingredients='${ingredients}', category_id = ${category_id} WHERE id=${id}`, (err, result) => {
             if (!err) {
                 resolve(result);
             } else {
@@ -69,4 +99,4 @@ const deleteById = async (id) => {
     );
 };
 
-module.exports = { getRecipe, getRecipeById, deleteById, postRecipe, putRecipe };
+module.exports = { getRecipe, getRecipeById, deleteById, postRecipe, putRecipe, getRecipeAll, getRecipeCount };
