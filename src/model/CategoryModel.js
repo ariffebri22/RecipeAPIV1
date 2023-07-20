@@ -1,14 +1,41 @@
 const Pool = require("../config/db");
 
-const getCategory = async () => {
+const getCategoryAll = async () => {
     console.log("model getCategory");
     return new Promise((resolve, reject) =>
-        Pool.query(`SELECT * FROM category ORDER BY id ASC`, (err, result) => {
+        Pool.query(`SELECt * FROM category ORDER BY id`, (err, result) => {
             if (!err) {
                 resolve(result);
             } else {
                 reject(err);
-                c;
+            }
+        })
+    );
+};
+
+const getCategory = async (data) => {
+    const { search, searchBy, sort, offset, limit } = data;
+    console.log("model getCategory", search, searchBy, sort, offset, limit);
+    return new Promise((resolve, reject) =>
+        Pool.query(`SELECT * FROM category WHERE ${searchBy} ILIKE '%${search}%' ORDER BY id ${sort} OFFSET ${offset} LIMIT ${limit} `, (err, result) => {
+            if (!err) {
+                resolve(result);
+            } else {
+                reject(err);
+            }
+        })
+    );
+};
+
+const getCategoryCount = async (data) => {
+    const { search, searchBy, sort, offset, limit } = data;
+    console.log("model getCategory", search, searchBy, sort, offset, limit);
+    return new Promise((resolve, reject) =>
+        Pool.query(`SELECT COUNT(*) FROM category WHERE ${searchBy} ILIKE '%${search}%'`, (err, result) => {
+            if (!err) {
+                resolve(result);
+            } else {
+                reject(err);
             }
         })
     );
@@ -69,4 +96,4 @@ const deleteCategoryById = async (id) => {
     );
 };
 
-module.exports = { getCategory, getCategoryById, deleteCategoryById, postCategory, putCategory };
+module.exports = { getCategory, getCategoryAll, getCategoryCount, getCategoryById, deleteCategoryById, postCategory, putCategory };

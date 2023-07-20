@@ -33,6 +33,7 @@ ALTER TABLE recipe ALTER COLUMN category_id SET NOT NULL;
 
 ALTER TABLE recipe ADD FOREIGN KEY (category_id) REFERENCES category(id);
 
+
 SELECT * FROM category;
 
 ALTER TABLE category ADD CONSTRAINT id UNIQUE (id);
@@ -49,3 +50,7 @@ DROP DATABASE myapi;
 
 
 SELECT recipe.id, recipe.title, recipe.ingredients, recipe.photo, category.name AS category FROM recipe JOIN category ON recipe.category_id = category.id WHERE title ILIKE '%spring%';
+
+SELECT * FROM category WHERE name ILIKE '%Main%';
+
+DROP TABLE users;

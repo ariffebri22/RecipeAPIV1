@@ -4,9 +4,13 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 const Router = require("./src/router");
+const helmet = require("helmet");
+const xss = require("xss");
 
 const port = 4000;
 const app = express();
+
+app.use(helmet());
 
 const corsOptions = {
     origin: "*",
