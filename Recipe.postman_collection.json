@@ -7,576 +7,603 @@
 	},
 	"item": [
 		{
-			"name": "Recipe SELECT",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}:{{port}}/recipe",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"recipe"
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "sort",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
+			"name": "Recipe",
+			"item": [
+				{
+					"name": "Recipe SELECT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/recipe",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Recipe SELECT DETAIL",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}:{{port}}/recipe/detail?search=steak&searchBy=title",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"recipe",
-						"detail"
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": "steak"
-						},
-						{
-							"key": "page",
-							"value": "2",
-							"disabled": true
-						},
-						{
-							"key": "searchBy",
-							"value": "title",
-							"description": "Main course"
-						},
-						{
-							"key": "sort",
-							"value": "desc",
-							"description": "asc / desc",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Recipe INSERT",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "title",
-							"value": "Porterhouse Steak",
-							"type": "text"
-						},
-						{
-							"key": "ingredients",
-							"value": "Potongan daging sapi yang menggabungkan T-bone steak dan filet mignon, garam, lada hitam, minyak zaitun.",
-							"type": "text"
-						},
-						{
-							"key": "category_id",
-							"value": "2",
-							"type": "text"
-						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/recipe",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"recipe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Recipe DELETE",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"title\": \"Blackforest\",\r\n        \"ingredients\": \"Mentega, Terigu, Gula, Coklat\",\r\n        \"category\": \"Desert\",\r\n        \"photo\": \"123\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Recipe INSERT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Qurban Steak",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "ingredients",
+									"value": "Potongan daging sapi yang didapatkan dari hasil qurban lalu di grill, namun saya tidak menyarankan nya.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/recipe",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"recipe"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/recipe/:id",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"recipe",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "20"
+				{
+					"name": "Recipe SELECT DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/recipe/detail",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"recipe",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "steak",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "searchBy",
+									"value": "title",
+									"description": "Main course",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc / desc",
+									"disabled": true
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Recipe UPDATE",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "title",
-							"value": "Tenderloin Steak",
-							"type": "text"
-						},
-						{
-							"key": "ingredients",
-							"value": "Daging sapi ribeye (bagian tulang rusuk), garam, lada hitam, minyak zaitun.",
-							"type": "text",
-							"disabled": true
-						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/recipe/:id",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"recipe",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "5"
+				{
+					"name": "Recipe DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/recipe/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"recipe",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "15"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Category SELECT",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}:{{port}}/category",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"category"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Category SELECT DETAIL",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}:{{port}}/category/detail",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"category",
-						"detail"
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": "hidangan",
-							"disabled": true
-						},
-						{
-							"key": "searchBy",
-							"value": "description",
-							"description": "name | description",
-							"disabled": true
-						},
-						{
-							"key": "page",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "sort",
-							"value": "desc",
-							"description": "asc | desc",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Category INSERT",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Dessert",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "Dessert adalah istilah lain untuk makanan penutup atau pencuci mulut maupun camilan setelah makan besar.",
-							"type": "text"
-						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/category",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"category"
-					]
+				{
+					"name": "Recipe UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Daging Qurban",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "ingredients",
+									"value": "Daging sapi ribeye (bagian tulang rusuk), garam, lada hitam, minyak zaitun.",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/recipe/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"recipe",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Category DELETE",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"title\": \"Blackforest\",\r\n        \"ingredients\": \"Mentega, Terigu, Gula, Coklat\",\r\n        \"category\": \"Desert\",\r\n        \"photo\": \"123\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Category",
+			"item": [
+				{
+					"name": "Category SELECT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/category",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"category"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/category/:id",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"category",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "4"
+				{
+					"name": "Category INSERT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Nyarap",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Nyarap adalah hidangan pembuka setelah bangun tidur sebelum memulai aktifitas.",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/category",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"category"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Category UPDATE",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Appetizers\",\r\n    \"description\": \" Small or light dishes served before the main course to stimulate the appetite.\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/category/:id",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"category",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "1"
+				{
+					"name": "Category SELECT DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/category/detail",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"category",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "hidangan",
+									"disabled": true
+								},
+								{
+									"key": "searchBy",
+									"value": "description",
+									"description": "name | description",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc | desc",
+									"disabled": true
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users SELECT",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}:{{port}}/users",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users SELECT DETAIL",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}:{{port}}/users/detail?search=&searchBy=username",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"users",
-						"detail"
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": ""
-						},
-						{
-							"key": "searchBy",
-							"value": "username",
-							"description": "username | email"
-						},
-						{
-							"key": "page",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "sort",
-							"value": null,
-							"description": "asc | desc",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users SELECT LOGIN",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "text"
-						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/users/login",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"users",
-						"login"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "aingmaung",
-							"disabled": true
+				{
+					"name": "Category DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Blackforest\",\r\n        \"ingredients\": \"Mentega, Terigu, Gula, Coklat\",\r\n        \"category\": \"Desert\",\r\n        \"photo\": \"123\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "password",
-							"value": "aing081",
-							"disabled": true
+						"url": {
+							"raw": "{{url}}:{{port}}/category/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Category UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Sarapan",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/category/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Users INSERT",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "username",
-							"value": "user1",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "user1",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "user1@gmail.com",
-							"type": "text"
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users SELECT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/users",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users DELETE",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"title\": \"Blackforest\",\r\n        \"ingredients\": \"Mentega, Terigu, Gula, Coklat\",\r\n        \"category\": \"Desert\",\r\n        \"photo\": \"123\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Users SELECT DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/users/detail",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "user",
+									"disabled": true
+								},
+								{
+									"key": "searchBy",
+									"value": "username",
+									"description": "username | email",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "asc | desc",
+									"disabled": true
+								}
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/users/:id",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"users",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "10"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users UPDATE",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "username",
-							"value": "user3",
-							"type": "text"
+				{
+					"name": "Users SELECT LOGIN",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "password",
-							"value": "aing081",
-							"type": "text",
-							"disabled": true
+						"url": {
+							"raw": "{{url}}:{{port}}/users/login",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "aingmaung",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "aing081",
+									"disabled": true
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}:{{port}}/users/:id",
-					"host": [
-						"{{url}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"users",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "9"
+				{
+					"name": "Users INSERT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user1@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Users UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user3",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "aing081",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Blackforest\",\r\n        \"ingredients\": \"Mentega, Terigu, Gula, Coklat\",\r\n        \"category\": \"Desert\",\r\n        \"photo\": \"123\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"variable": [
