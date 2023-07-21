@@ -6,7 +6,7 @@ The Recipe API is a RESTful web service that provides a wide range of food recip
 
 ### What is Node.js ?
 
-Node.js is a framework for the backend of a web app, designed by Ryan Dahl as an open-source and cross-platform runtime environment where we can execute JavaScript outside the browser environment. Node.js runs on V8, a JavaScript engine that allows us to execute JavaScript code within it.
+Node.js is a runtime program, designed by Ryan Dahl as an open-source and cross-platform runtime environment where we can execute JavaScript outside the browser environment. Node.js runs on V8, a JavaScript engine that allows us to execute JavaScript code within it.
 
 ### What is Express ?
 
